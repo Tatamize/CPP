@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# simple tester for CPP module 01 ex04 (make a kind of "SED")
+
+echo -e "\033[32m""Let's replace!""\033[0m"
+
+make re
+
+FILE="sample"
+S1="filename"
+S2="XXXXX"
+
+./ex04 $FILE $S1 $S2
+
+sed -e "s/$S1/$S2/g" $FILE > "$FILE"_bash
+
+echo -e "\033[32m""Let's diff!""\033[0m"
+
+diff "$FILE".replace "$FILE"_bash
+
+echo -e "\033[32m""You can ignore the 7c7(new line in the end of file)!""\033[0m"
+
+#rm "$FILE".replace
+#rm "$FILE"_bash
+
+
+echo -e "\033[32m""Let's check no file case!""\033[0m"
+
+FILE="notexist"
+S1="filename"
+S2="XXXXX"
+
+./ex04 $FILE $S1 $S2
+
